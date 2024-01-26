@@ -8,30 +8,27 @@ import { PrismaService } from 'src/database/prisma.service';
 @Injectable()
 export class ContactsService {
   constructor(private prisma: PrismaService){}
-  async createContacts(createContactDto: CreateContactDto) {
+  async createContacts(createContactDto: CreateContactDto, userId: string) {
     const findcontact = await this.prisma.contact.findFirst({
       where: {email: createContactDto.email}
     })
     if(findcontact){
       throw new ConflictException("Contact already exists")
     }
-    const currentDate = new Date()
+  
     const contact = new Contact()
     Object.assign(contact, {
       ...createContactDto
     })
     const user = await this.prisma.user.findUnique({
-      where: { id: createContactDto.userId },
+      where: { id: userId }
     });
     if (!user) {
       throw new NotFoundException('User not found');
     }
     await this.prisma.contact.create({
       data: {
-        ...contact, 
-        Registration_Date: currentDate.toISOString(),
-        userId: createContactDto.userId,
-        user: { connect: { id: createContactDto.userId}}
+        ...contact, userId
       },
     })
     return plainToInstance(Contact, contact)

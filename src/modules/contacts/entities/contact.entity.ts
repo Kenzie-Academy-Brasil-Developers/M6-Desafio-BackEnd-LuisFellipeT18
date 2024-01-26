@@ -8,7 +8,6 @@ export class Contact {
     telephone: string
     Registration_Date: Date
     userId: string
-    user: User
 
     constructor(){
         this.id = randomUUID()
