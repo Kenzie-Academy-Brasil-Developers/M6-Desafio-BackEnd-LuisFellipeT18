@@ -1,13 +1,16 @@
-import {forwardRef} from "react"
+import {forwardRef, InputHTMLAttributes, Ref} from "react"
 import styles from "./style.module.scss"
 
-export const Input = forwardRef(({ label, ...rest}, ref) => {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    label: string;
+  }
 
+  export const Input = forwardRef(
+    ({ label, ...rest }: InputProps, ref: Ref<HTMLInputElement>) => {
     return (
         <div className={styles.inputBox}>
             <label className="label">{label}</label>
             <input ref={ref} {...rest}/>
-
         </div>
     )
 })

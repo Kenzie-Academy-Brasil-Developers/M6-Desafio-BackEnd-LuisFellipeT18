@@ -1,9 +1,14 @@
-import {forwardRef, useState} from "react"
+import {forwardRef, InputHTMLAttributes, Ref, useState} from "react"
 import styles from "./style.module.scss"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md"
 
-export const InputPassword = forwardRef(({ label, ...rest}, ref) => {
-    const [isHidden, setIsHidden] = useState(true)
+interface InputPasswordProps extends InputHTMLAttributes<HTMLInputElement> {
+    label: string;
+  }
+
+export const InputPassword = forwardRef(
+    ({ label, ...rest }: InputPasswordProps, ref: Ref<HTMLInputElement>) => {
+      const [isHidden, setIsHidden] = useState(true);
 
     return (
         <div className={styles.inputBox}>
