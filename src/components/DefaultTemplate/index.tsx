@@ -1,15 +1,18 @@
 import { Footer } from "../Footer"
 import { Header } from "../Header"
-import { ReactNode } from "react";
+import { User } from "../../../BackEnd/src/modules/users/entities/user.entity"
+import React, { ReactNode } from 'react';
 
 interface DefaultTemplateProps {
     children: ReactNode;
+    user: User | null;
+    userLogout: () => void;
   }
 
-export const DefaultTemplate = ({children}: DefaultTemplateProps) => {
+export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({ user, children, userLogout }) => {
     return (
         <>
-            <Header />
+            <Header user={user} userLogout={userLogout}/>
             {children}
             <Footer />
         </>

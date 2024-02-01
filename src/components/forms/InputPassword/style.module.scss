@@ -12,6 +12,10 @@
         font-weight: 400;
         color: var(--color-orange06);
         background: var(--color-grey10);
+
+        &:disabled{
+            opacity: .5;
+        }
     }
 
     button{

@@ -17,7 +17,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   findAll(@Request() req) {
     console.log(req.user)
-    return this.usersService.findAllUsers();
+    return this.usersService.findOneUsers(req.user.id);
   }
 
   @Get(':id')

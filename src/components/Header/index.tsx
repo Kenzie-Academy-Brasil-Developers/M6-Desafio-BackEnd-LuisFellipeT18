@@ -1,22 +1,28 @@
 import { Link } from "react-router-dom"
+import { User } from "../../../BackEnd/src/modules/users/entities/user.entity"
 
-export const Header = () => {
+interface HeaderProps {
+    user: User | null;
+    userLogout: () => void;
+  }
+
+
+
+export const Header: React.FC<HeaderProps> = ({ user, userLogout}) => {
     return (
         <header>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/register_login">
-                            Registro
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+            <div className="container">
+              <nav>
+                <div>                 
+                    <Link to="/">Home</Link>                 
+                </div>
+                <div>
+                    <p>{user?.name}</p>
+                    <p>{user?.email}</p>
+                </div>
+                <button onClick={() => userLogout}>Sair</button>
+               </nav>
+             </div>
         </header>
     )
-}
+} 

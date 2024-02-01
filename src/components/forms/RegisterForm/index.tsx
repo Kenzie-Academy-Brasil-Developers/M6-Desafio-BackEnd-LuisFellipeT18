@@ -5,6 +5,8 @@ import { InputPassword } from "../InputPassword"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerFormSchema } from "./registerFormSchema"
 import  styles  from "./style.module.scss"
+import { api } from "../../../services/api"
+import { useState } from "react"
 
 interface FormData {
     name: string;
@@ -19,9 +21,22 @@ export const RegisterForm = () => {
         resolver: zodResolver(registerFormSchema)
     });
 
+    const [loading, setLoading] = useState(false)
+
+    const userRegister = async (formData: FormData) => {
+        try {
+            setLoading(true)
+            await api.post("/users", formData)
+            alert("cadastro realizado com sucesso")
+        } catch (error: any) {
+                alert("Usuário já cadastrado")
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const submit = (formData: FormData) => {
-        console.log(formData)
+        userRegister(formData)
     }
     return (
         <form onSubmit={handleSubmit(submit)}>
@@ -30,7 +45,9 @@ export const RegisterForm = () => {
             type="text" 
             placeholder="Maria Silva" 
             {...register("name")} 
-            required/>
+            required
+            disabled={loading}
+            />
             {errors.name && (
             <p className={styles.errorMessage}>{errors.name.message}</p>)}
 
@@ -39,7 +56,8 @@ export const RegisterForm = () => {
             type="email" 
             placeholder="nome@email.com.br" 
             {...register("email")} 
-            required/>
+            required
+            disabled={loading}/>
             {errors.email && (
             <p className={styles.errorMessage}>{errors.email.message}</p>)}
 
@@ -48,29 +66,32 @@ export const RegisterForm = () => {
             type="text" 
             placeholder="11987788546" 
             {...register("telephone")} 
-            required/>
+            required
+            disabled={loading}/>
             {errors.telephone && (
             <p className={styles.errorMessage}>{errors.telephone.message}</p>)}
 
             <InputPassword 
             label="Crie uma senha" 
-            type="password" 
             {...register("password")} 
-            required/>
+            required
+            disabled={loading}/>
             {errors.password && (
             <p className={styles.errorMessage}>{errors.password.message}</p>)}
 
             <InputPassword 
-            label="Confirme sua senha" 
-            type="password" 
+            label="Confirme sua senha"
             {...register("confirmPassword")} 
-            required/>
+            required
+            disabled={loading}/>
             {errors.confirmPassword && (
             <p className={styles.errorMessage}>{errors.confirmPassword.message}</p>)}  
 
             <div>
-                <Link to="/">voltar</Link>
-                <button>Cadastre-se</button>
+                <Link className="link" to="/">voltar</Link>
+                <button type="submit" className="btn outline" disabled={loading}>
+                    {loading ? "Cadastrando..." : "Cadastrar"}
+                </button>
             </div>
         </form>
     )
