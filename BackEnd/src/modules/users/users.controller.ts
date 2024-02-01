@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
+
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -11,13 +12,6 @@ export class UsersController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUsers(createUserDto);
-  }
-
-  @Get()
-  @UseGuards(JwtAuthGuard)
-  findAll(@Request() req) {
-    console.log(req.user)
-    return this.usersService.findOneUsers(req.user.id);
   }
 
   @Get(':id')

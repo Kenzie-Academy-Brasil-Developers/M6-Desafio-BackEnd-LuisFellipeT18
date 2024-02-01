@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Input } from "../Input"
 import { InputPassword } from "../InputPassword"
@@ -23,10 +23,13 @@ export const RegisterForm = () => {
 
     const [loading, setLoading] = useState(false)
 
+    const navigate = useNavigate()
+
     const userRegister = async (formData: FormData) => {
         try {
             setLoading(true)
             await api.post("/users", formData)
+            navigate("/")
             alert("cadastro realizado com sucesso")
         } catch (error: any) {
                 alert("Usuário já cadastrado")

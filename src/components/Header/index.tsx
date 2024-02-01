@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import { User } from "../../../BackEnd/src/modules/users/entities/user.entity"
+import Logo from "../../assets/logo2.png"
+import styles from "./style.module.scss"
 
 interface HeaderProps {
     user: User | null;
@@ -12,15 +14,16 @@ export const Header: React.FC<HeaderProps> = ({ user, userLogout}) => {
     return (
         <header>
             <div className="container">
-              <nav>
-                <div>                 
-                    <Link to="/">Home</Link>                 
-                </div>
+              <nav className={styles.flexBox}>
+                <img src={Logo} alt="Logo Contact Service"/>
                 <div>
-                    <p>{user?.name}</p>
-                    <p>{user?.email}</p>
+                  <div>
+                    <p className="paragraph">{user?.name}</p>
+                    <p className="paragraph">{user?.email}</p>
+                  </div>
+                    <button className="btn outline" onClick={() => userLogout}>Sair</button>
+                    <Link to="/" className="link">Home</Link>                 
                 </div>
-                <button onClick={() => userLogout}>Sair</button>
                </nav>
              </div>
         </header>

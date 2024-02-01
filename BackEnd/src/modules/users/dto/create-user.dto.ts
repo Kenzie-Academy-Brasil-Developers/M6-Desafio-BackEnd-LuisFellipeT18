@@ -6,11 +6,11 @@ export class CreateUserDto {
 
     @IsString()
     @IsNotEmpty()
-    name: string
+    name!: string
 
     @IsString()
     @IsEmail()
-    email: string
+    email!: string
 
     @IsString()
     @IsNotEmpty()
@@ -18,10 +18,10 @@ export class CreateUserDto {
     @Transform(({value}: {value: string}) => hashSync(value),{
         groups: ["transform"],
     })
-    password: string
+    password!: string
 
     @IsString()
     @IsMobilePhone()
-    telephone: string
+    telephone!: string
 
 }

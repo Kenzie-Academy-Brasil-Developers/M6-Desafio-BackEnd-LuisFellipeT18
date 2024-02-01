@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, UseGuards, Req } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { Request } from 'express';
+
+
+interface ExtendedRequest extends Request {
+  user: {
+    id: string; 
+  }
+}
 
 
 @Controller('contacts')
@@ -13,12 +21,12 @@ export class ContactsController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  create(@Body() createContactDto: CreateContactDto, @Request() req) {
+  create(@Body() createContactDto: CreateContactDto, @Req() req: ExtendedRequest) {
     return this.contactsService.createContacts(createContactDto, req.user.id);
   }
 
   @Get()
-  findAll() {
+  findAll(@Req() req: Request) {
     return this.contactsService.findAllContacts();
   }
 
