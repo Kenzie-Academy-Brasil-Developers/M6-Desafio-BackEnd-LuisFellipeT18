@@ -4,10 +4,9 @@ import { InputPassword } from "../InputPassword"
 import { zodResolver } from "@hookform/resolvers/zod"
 import  styles  from "./style.module.scss"
 import { LoginFormSchema } from "./loginFormSchema"
-import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
-import { api } from "../../../services/api"
-import { User } from "../../../../BackEnd/src/modules/users/entities/user.entity"
+import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 
 interface FormData {
@@ -18,36 +17,22 @@ interface FormData {
     confirmPassword: string;
   }
 
-interface LoginFormProps {
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
-}
-
-export const LoginForm: React.FC<LoginFormProps> = ({ setUser }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+export const LoginForm = () => {
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors },
+        reset 
+    } = useForm<FormData>({
         resolver: zodResolver(LoginFormSchema)
     });
 
-    const navigate = useNavigate()
-
     const[loading, setLoading] = useState(false)
 
-    const userLogin = async (formData: FormData) => {
-        try {
-            setLoading(true)
-            const { data } = await api.post("/login", formData);
-            setUser(data.user)
-            localStorage.setItem("@TOKEN", data.token)
-            navigate("/user")
-        } catch (error: any) {
-            console.log(error)
-            alert("Invalid email or password")
-        } finally {
-            setLoading(false)
-        }
-    }
+    const { userLogin } = useContext(UserContext)
     
     const submit = (formData: FormData) => {
-        userLogin(formData);
+        userLogin(formData, setLoading, reset);
     }
     return (
         <form onSubmit={handleSubmit(submit)}>

@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom"
-import { User } from "../../../BackEnd/src/modules/users/entities/user.entity"
 import Logo from "../../assets/logo2.png"
 import styles from "./style.module.scss"
-
-interface HeaderProps {
-    user: User | null;
-    userLogout: () => void;
-  }
+import { useContext } from "react"
+import { UserContext } from "../providers/UserContext"
 
 
 
-export const Header: React.FC<HeaderProps> = ({ user, userLogout}) => {
+export const Header = () => {
+  const {user, userLogout} = useContext(UserContext)
     return (
         <header>
             <div className="container">

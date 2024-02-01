@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link} from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Input } from "../Input"
 import { InputPassword } from "../InputPassword"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerFormSchema } from "./registerFormSchema"
 import  styles  from "./style.module.scss"
-import { api } from "../../../services/api"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 interface FormData {
     name: string;
@@ -17,29 +17,19 @@ interface FormData {
   }
 
 export const RegisterForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const { 
+        register, 
+        handleSubmit, formState: { errors } 
+    } = useForm<FormData>({
         resolver: zodResolver(registerFormSchema)
     });
 
     const [loading, setLoading] = useState(false)
 
-    const navigate = useNavigate()
-
-    const userRegister = async (formData: FormData) => {
-        try {
-            setLoading(true)
-            await api.post("/users", formData)
-            navigate("/")
-            alert("cadastro realizado com sucesso")
-        } catch (error: any) {
-                alert("Usuário já cadastrado")
-        } finally {
-            setLoading(false)
-        }
-    }
+    const {userRegister} = useContext(UserContext)
 
     const submit = (formData: FormData) => {
-        userRegister(formData)
+        userRegister(formData, setLoading)
     }
     return (
         <form onSubmit={handleSubmit(submit)}>
