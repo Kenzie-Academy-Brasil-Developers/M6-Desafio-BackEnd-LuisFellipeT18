@@ -8,6 +8,15 @@
     align-items: center;
     gap: 2rem;
 
+    img{
+        width: 15rem;
+        height: 08rem;
+        @media (min-width: 300px) {
+            width: 18rem;
+            height: 11rem;
+        }
+    }
+
     form{
         @extend %flex;
         width: 100%;
@@ -27,7 +36,3 @@
     }
 }
 
-.imgLogo{
-    width: 19rem;
-    height: 12rem;
-}

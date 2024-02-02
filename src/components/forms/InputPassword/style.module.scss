@@ -12,6 +12,7 @@
         font-weight: 400;
         color: var(--color-orange06);
         background: var(--color-grey10);
+        border-radius: 0.5rem;
 
         &:disabled{
             opacity: .5;

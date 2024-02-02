@@ -18,8 +18,7 @@ export const Header = () => {
                     <p className="paragraph">{user?.name}</p>
                     <p className="paragraph">{user?.email}</p>
                   </div>
-                    <button className="btn outline" onClick={() => userLogout}>Sair</button>
-                    <Link to="/" className="link">Home</Link>                 
+                    <button className="btn outline" onClick={() => userLogout()}>Sair</button>                 
                 </div>
                </nav>
              </div>

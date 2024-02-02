@@ -57,10 +57,10 @@ export const LoginForm = () => {
             <p className={styles.errorMessage}>{errors.password.message}</p>)}
 
             <div>
-                <Link className="link" to="/register_login">Cadastre-se</Link>
                 <button className="btn outline" type="submit">
                     {loading ? "Logando..." : "Logar"}
                 </button>
+                <Link className="link" to="/register_login">Cadastre-se</Link>
             
             </div>
         </form>

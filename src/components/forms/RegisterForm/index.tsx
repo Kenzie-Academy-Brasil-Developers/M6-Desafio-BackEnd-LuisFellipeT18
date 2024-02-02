@@ -68,6 +68,7 @@ export const RegisterForm = () => {
             label="Crie uma senha" 
             {...register("password")} 
             required
+            placeholder="senha"
             disabled={loading}/>
             {errors.password && (
             <p className={styles.errorMessage}>{errors.password.message}</p>)}
@@ -76,15 +77,16 @@ export const RegisterForm = () => {
             label="Confirme sua senha"
             {...register("confirmPassword")} 
             required
+            placeholder="confirmar senha"
             disabled={loading}/>
             {errors.confirmPassword && (
             <p className={styles.errorMessage}>{errors.confirmPassword.message}</p>)}  
 
             <div>
-                <Link className="link" to="/">voltar</Link>
                 <button type="submit" className="btn outline" disabled={loading}>
                     {loading ? "Cadastrando..." : "Cadastrar"}
                 </button>
+                <Link className="link" to="/">voltar</Link>
             </div>
         </form>
     )

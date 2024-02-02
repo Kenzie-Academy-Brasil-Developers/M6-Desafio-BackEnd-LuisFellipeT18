@@ -4,11 +4,12 @@ import App from './App.tsx'
 import {BrowserRouter} from "react-router-dom"
 import { UserProvider } from './components/providers/UserContext.tsx'
 
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-        <UserProvider>
-          <App />
+        <UserProvider>     
+                <App />
         </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
