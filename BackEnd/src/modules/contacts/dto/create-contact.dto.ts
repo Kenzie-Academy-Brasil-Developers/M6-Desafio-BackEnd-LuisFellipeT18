@@ -10,6 +10,5 @@ export class CreateContactDto {
     email!: string
 
     @IsString()
-    @IsMobilePhone()
     telephone!: string
 }

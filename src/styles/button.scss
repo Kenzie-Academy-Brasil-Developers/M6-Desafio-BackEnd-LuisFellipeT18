@@ -31,8 +31,8 @@
 
 .solid{
         color: var(--collor-white0);
-        background: var(--color-blue06);
-        border-color: var(--color-blue06);
+        background: var(--color-violet06);
+        border-color: var(--color-violet06);
 
         &:hover{
             filter: brightness(1.1);
@@ -60,5 +60,9 @@
     &:hover{
         text-decoration: underline;
     }
+}
+
+.button_contact{
+    color: var(--color-violet06);
 }
 

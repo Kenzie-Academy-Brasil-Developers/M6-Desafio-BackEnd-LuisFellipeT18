@@ -5,7 +5,9 @@ import { UserPage } from "../pages/UserPage";
 import { ErrorPage } from "../pages/ErrorPage";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
-import { ContactProvider } from "../components/providers/ContactContext";
+import { CreateContactPage } from "../pages/CreateContactPage";
+import { EditContactPage } from "../pages/EditContactPage";
+
 
 
 export const RoutesMain = () => {
@@ -18,14 +20,9 @@ export const RoutesMain = () => {
             </Route>
 
             <Route element={<PrivateRoutes/>}>
-                <Route 
-                path="/user" 
-                element={
-                    <ContactProvider>
-                        <UserPage />
-                    </ContactProvider>
-                   } 
-                />
+                <Route path="/user" element={<UserPage />}/>
+                <Route path="/contacts" element={<CreateContactPage />}/>
+                <Route path="/contacts/edit" element={<EditContactPage />}/>
             </Route>
 
             <Route path="*" element={<ErrorPage/>} />

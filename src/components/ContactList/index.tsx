@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { ContactCard } from "./ContactCard"
 import { useContext } from "react"
 import { ContactContext } from "../providers/ContactContext"
+import { UserContext } from "../providers/UserContext";
 
 interface ContactListProps {
     contactList: {
@@ -9,21 +10,25 @@ interface ContactListProps {
       name: string;
       email: string;
       telephone: string;
+      userId: string;
     }[];
   }
 
   
 
 export const ContactList: React.FC<ContactListProps>  = ({ contactList }) => {
-    const { contactList: contextContactList } = useContext(ContactContext);
+    const { contactList: contextContactList } = useContext(ContactContext) || {};
+    const { user } = useContext(UserContext) || { id: "" };
+    const displayedContactList = (contextContactList || contactList || []).filter(
+        (contact) => contact.userId === user.id)
     return (
         <div>
             <div>
                 <h1 className="title">Lista de Contatos</h1>
-                <Link className="btn solid" to="/" >Cadastrar contato</Link>
+                <Link className="btn solid" to="/contacts" >Cadastrar contato</Link>
             </div>
             <ul>
-                {(contextContactList || contactList).map((contact) => (
+            {displayedContactList.map((contact: any) => (
                     <ContactCard key={contact.id} contact={contact}/>
                 ))}
             </ul>

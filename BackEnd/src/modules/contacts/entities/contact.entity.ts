@@ -1,5 +1,4 @@
 import { randomUUID } from "crypto"
-import { User } from "src/modules/users/entities/user.entity"
 
 export class Contact {
     readonly id: string
@@ -7,7 +6,7 @@ export class Contact {
     email!: string
     telephone!: string
     Registration_Date: Date
-    userId!: string
+    readonly userId: string
 
     constructor(){
         this.id = randomUUID()
