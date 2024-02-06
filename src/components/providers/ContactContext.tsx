@@ -44,7 +44,6 @@ export const ContactContext = createContext<ContactContextType>({
 export const ContactProvider: React.FC<ContactProviderProps> = ({children}) => {
 
     const [contactList, setContactList] = useState<Contact[]>([])
-
     const [editingContact, setEditingContact] = useState<Contact | null>(null);
 
     const navigate = useNavigate()
@@ -61,23 +60,8 @@ export const ContactProvider: React.FC<ContactProviderProps> = ({children}) => {
         getContact()
     }, [])
 
-    const deleteContact = async (deletingId: any) => {
-        const token = localStorage.getItem("@TOKEN")
-        try {
-            await api.delete(`/contacts/${deletingId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-             const newContactList = contactList.filter(contact => contact.id !== deletingId)
-             toast.success("Contato excluido com sucesso!")
-             setContactList(newContactList)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const createContact = async (formData: ContactFormData) => {
+
         try {
             const token = localStorage.getItem("@TOKEN")
 
@@ -90,17 +74,17 @@ export const ContactProvider: React.FC<ContactProviderProps> = ({children}) => {
                     Authorization: `Bearer ${token}`
                 }
              })
-             setContactList([...contactList, data])
+             setContactList(contactList => [...contactList, data])
 
-             toast.success("Contato adicionado com sucesso!")
+             toast.success("Contato adicionado com sucesso!");
 
-             navigate("/user")
+             navigate("/user");
    
             } catch (error) {
                 console.log(error)
-        }
+            }
     }
-
+    
     const editContact = async (formData: ContactFormData) => {
         const token = localStorage.getItem("@TOKEN")
         try {
@@ -127,6 +111,24 @@ export const ContactProvider: React.FC<ContactProviderProps> = ({children}) => {
             console.log(error)
         }
     }
+
+    const deleteContact = async (deletingId: any) => {
+        const token = localStorage.getItem("@TOKEN")
+        try {
+            await api.delete(`/contacts/${deletingId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+             const newContactList = contactList.filter(contact => contact.id !== deletingId)
+             toast.success("Contato excluido com sucesso!")
+             setContactList(newContactList)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return (
         <ContactContext.Provider value={{contactList, editingContact, createContact, deleteContact, setEditingContact, editContact}}>
             {children}

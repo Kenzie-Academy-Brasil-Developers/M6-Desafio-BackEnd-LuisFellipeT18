@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { ContactList } from "../../components/ContactList"
 import { DefaultTemplate } from "../../components/DefaultTemplate"
 import styles from "./style.module.scss"
-import { ContactContext, ContactContextType } from "../../components/providers/ContactContext";
+import { ContactContext } from "../../components/providers/ContactContext";
 
 
 
 export const UserPage = () => {
-    const { contactList } = useContext<ContactContextType>(ContactContext);
+    const { contactList } = useContext(ContactContext);
 
     return(
         <DefaultTemplate>

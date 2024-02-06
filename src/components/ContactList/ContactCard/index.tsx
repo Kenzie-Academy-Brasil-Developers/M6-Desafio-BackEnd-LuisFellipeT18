@@ -3,6 +3,7 @@ import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../../providers/UserContext";
 import { ContactContext } from "../../providers/ContactContext"
+import style from "./style.module.scss"
 
 
 interface ContactCardProps {
@@ -35,7 +36,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact })=> {
 
     return(
             <li>
-                <div>
+                <div className={style.cards}>
                     <p className="paragraph orange bold">{contact.name}</p>
                     <p className="paragraph white">{contact.email}</p>
                     <p className="paragraph white">{contact.telephone}</p>

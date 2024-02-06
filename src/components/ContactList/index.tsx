@@ -3,6 +3,7 @@ import { ContactCard } from "./ContactCard"
 import { useContext } from "react"
 import { ContactContext } from "../providers/ContactContext"
 import { UserContext } from "../providers/UserContext";
+import style from "./styles.module.scss"
 
 interface ContactListProps {
     contactList: {
@@ -22,10 +23,10 @@ export const ContactList: React.FC<ContactListProps>  = ({ contactList }) => {
     const displayedContactList = (contextContactList || contactList || []).filter(
         (contact) => contact.userId === user.id)
     return (
-        <div>
+        <div className={style.cardsBox}>
             <div>
                 <h1 className="title">Lista de Contatos</h1>
-                <Link className="btn solid" to="/contacts" >Cadastrar contato</Link>
+                <Link className="btn outline" to="/contacts" >Cadastrar contato</Link>
             </div>
             <ul>
             {displayedContactList.map((contact: any) => (

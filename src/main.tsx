@@ -6,11 +6,11 @@ import { UserProvider } from './components/providers/UserContext.tsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-        <UserProvider>     
+  <React.StrictMode>  
+        <BrowserRouter>
+            <UserProvider>     
                 <App />
-        </UserProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+            </UserProvider>
+        </BrowserRouter>  
+  </React.StrictMode>
 )
