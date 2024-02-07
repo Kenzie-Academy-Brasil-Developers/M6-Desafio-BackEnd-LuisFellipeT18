@@ -26,9 +26,9 @@ export const ContactList: React.FC<ContactListProps>  = ({ contactList }) => {
         <div className={style.cardsBox}>
             <div>
                 <h1 className="title">Lista de Contatos</h1>
-                <Link className="btn outline" to="/contacts" >Cadastrar contato</Link>
+                <Link className="btn outline" to="/contacts" >Cadastrar</Link>
             </div>
-            <ul>
+            <ul className={style.listBox}>
             {displayedContactList.map((contact: any) => (
                     <ContactCard key={contact.id} contact={contact}/>
                 ))}

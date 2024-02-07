@@ -35,7 +35,7 @@ export const ContactCard: React.FC<ContactCardProps> = ({ contact })=> {
     const isUserContact = user.id === contact.userId;
 
     return(
-            <li>
+            <li className={style.cardBox}>
                 <div className={style.cards}>
                     <p className="paragraph orange bold">{contact.name}</p>
                     <p className="paragraph white">{contact.email}</p>
