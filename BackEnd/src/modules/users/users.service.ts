@@ -53,11 +53,21 @@ export class UsersService {
     return plainToInstance(User, updateUser)
   }
 
-  async removeUsers(id: string) {
-    const user = await this.prisma.user.findUnique({where: {id}})
+  async removeUsersAndContacts(userId: string): Promise<void> {
+    const user = await this.prisma.user.findUnique({
+      where: {id: userId},
+      include: { contacts: true },
+    })
     if(!user){
       throw new NotFoundException("User not found");
     }
-    await this.prisma.user.delete({where: {id}})
+    await this.prisma.$transaction([
+      this.prisma.contact.deleteMany({
+        where: { userId: user.id}
+      }),
+      this.prisma.user.delete({
+        where:{id: userId}
+      })
+    ])
   }
 }
