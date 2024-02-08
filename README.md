@@ -23,7 +23,7 @@ Para fazer o deploy desse projeto rode
 
 Esse projeto é divido em duas Pastas , BackEnd e FrontEnd, cada diretório possui a sua inicialização. 
 
-Para começar já na pagina do github, na page do repositório, click no botão verde Code, em seguica click no icone Copy url to clipboard, para copiar o repositório, va no terminal da sua maquina e intaleo repositorio com o comando :
+Para começar já na pagina do github, na page do repositório, click no botão verde Code, em seguica click no icone Copy url to clipboard, para copiar o repositório, va no terminal da sua maquina e clone o repositorio com o comando :
 $ git clone <link_copiado>
 
 Abra o a pasta do aquivo no seu programa de desenvolvimento - exemplo VS Code. 
