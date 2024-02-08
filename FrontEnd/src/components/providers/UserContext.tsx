@@ -20,6 +20,8 @@ export const UserContext = createContext<any>({})
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null)
 
+    const [editingUser, setEditingUser] = useState<User | null>(null);
+
     const [loading, setLoading] = useState(false)
     
     const navigate = useNavigate();
@@ -96,10 +98,54 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
                 setLoading(false)
             }
         }
+    const userEdit = async (
+        userId: string,
+        formData: FormData,
+        ) => {
+            const token = localStorage.getItem("@TOKEN")
+                
+            try {
+                await api.patch(`/users/${userId}`, formData, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                toast.success("Usuário editado com sucesso");
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    
+    const userDelete = async (
+        userId: string) => {
+        const token = localStorage.getItem("@TOKEN")
+            try {
+                await api.delete(`/users/${userId}`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                navigate("/");
+                localStorage.removeItem("@USERID");
+                localStorage.removeItem("@TOKEN");
+            } catch (error) {
+                toast.success("Usuário deletado com sucesso");
+            }
+            }
     
     return (
-        <UserContext.Provider value={{loading, user, userLogin, userRegister, userLogout}}>
+        <UserContext.Provider value={{
+            loading, 
+            user, 
+            userLogin, 
+            userRegister, 
+            userLogout,
+            userEdit,
+            editingUser,
+            setEditingUser,
+            userDelete}}>
             {children}
         </UserContext.Provider>
     )
 }
+    

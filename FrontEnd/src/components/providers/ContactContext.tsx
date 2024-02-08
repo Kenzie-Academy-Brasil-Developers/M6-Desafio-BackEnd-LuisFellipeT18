@@ -75,9 +75,7 @@ export const ContactProvider: React.FC<ContactProviderProps> = ({children}) => {
                 }
              })
              setContactList(contactList => [...contactList, data])
-
-             toast.success("Contato adicionado com sucesso!");
-
+             console.log(toast)
              navigate("/user");
    
             } catch (error) {

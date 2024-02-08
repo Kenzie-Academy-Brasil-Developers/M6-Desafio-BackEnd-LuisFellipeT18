@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Input } from "../Input"
 import { SubmitHandler, useForm} from "react-hook-form"
 import { ContactContext } from "../../providers/ContactContext";
+import { toast } from "react-toastify";
 
 
 interface FormData {
@@ -16,6 +17,7 @@ export const CreateContactForm = () => {
     const {register, handleSubmit} = useForm<FormData>();
     const contactContext = useContext(ContactContext);
     const { createContact } = contactContext;
+    
 
     if (!contactContext) {
         throw new Error("useCreateContactForm must be used within a ContactProvider");
@@ -24,7 +26,10 @@ export const CreateContactForm = () => {
     const onSubmit: SubmitHandler<FormData> = async (formData) => {
         try {
             await createContact(formData);
-            window.location.href = "/user";
+            toast.success("Contato criado com sucesso")
+            setTimeout(() => {
+                window.location.href = '/user';
+              }, 2000);
         } catch (error) {
             console.error(error);
         } 

@@ -7,6 +7,7 @@ import { PrivateRoutes } from "./PrivateRoutes";
 import { PublicRoutes } from "./PublicRoutes";
 import { CreateContactPage } from "../pages/CreateContactPage";
 import { EditContactPage } from "../pages/EditContactPage";
+import { EditUserPage } from "../pages/EditUserPage";
 
 
 
@@ -22,7 +23,8 @@ export const RoutesMain = () => {
             <Route element={<PrivateRoutes/>}>
                 <Route path="/user" element={<UserPage />}/>
                 <Route path="/contacts" element={<CreateContactPage />}/>
-                <Route path="/contacts/edit" element={<EditContactPage />}/>
+                <Route path="/contacts/edit" element={<EditContactPage />} />
+                <Route path="/user/edit" element={<EditUserPage/>} />  
             </Route>
 
             <Route path="*" element={<ErrorPage/>} />
