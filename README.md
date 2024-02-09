@@ -6,6 +6,9 @@ Esse é um projeto baseado em uma agenda virtual, onde é possivel armazenar con
 # Documentação do projeto : API 
 http://localhost:3000/api
 
+# Para visualizar a app no vercel click:
+https://desafio-beck-end-luisfellipet18.vercel.app
+
 
 ## Deploy
 
