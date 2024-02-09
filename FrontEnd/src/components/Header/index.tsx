@@ -4,7 +4,6 @@ import { useContext } from "react"
 import { UserContext } from "../providers/UserContext"
 import { MdOutlineEdit } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify";
 import { DeleteUserConfirm } from "../DeleteUserConfirm"
 
 
@@ -25,11 +24,8 @@ export const Header = () => {
     try {
       await userDelete(user.id);
       } catch (error) {
-        toast.success('Usuário excluído com sucesso!');
+        console.log(error)
       }
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 2000);
     };
   
     return (

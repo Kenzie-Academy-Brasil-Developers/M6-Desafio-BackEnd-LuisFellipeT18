@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
-import style from "./style.module.scss"
+import style from "./styles.module.scss"
+import { toast } from "react-toastify";
 
 interface DeleteUserConfirmProps {
     onConfirm: () => void;
@@ -9,10 +10,18 @@ interface DeleteUserConfirmProps {
 export const DeleteUserConfirm: React.FC<DeleteUserConfirmProps> = ({ onConfirm }) => {
     const [isVisible, setIsVisible] = useState(false);
   
-    const handleConfirm = () => {
-      onConfirm();
-      setIsVisible(false);
-    };
+    const handleConfirm = async () => {
+      try {
+        await onConfirm();
+        setIsVisible(false);  
+        toast.success('Usuário excluído com sucesso!');
+        setTimeout(() => {
+            window.location.href = '/'; 
+        }, 2000);
+    } catch (error) {
+        console.error(error);
+    }
+};
   
     return (
         <>

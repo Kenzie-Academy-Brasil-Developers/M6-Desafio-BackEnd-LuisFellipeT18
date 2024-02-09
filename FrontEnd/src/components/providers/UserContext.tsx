@@ -125,13 +125,15 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
                         Authorization: `Bearer ${token}`,
                     }
                 })
-                navigate("/");
                 localStorage.removeItem("@USERID");
                 localStorage.removeItem("@TOKEN");
+                setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
             } catch (error) {
                 toast.success("Usuário deletado com sucesso");
             }
-            }
+        }
     
     return (
         <UserContext.Provider value={{
