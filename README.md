@@ -10,15 +10,6 @@ http://localhost:3000/api
 https://desafio-beck-end-luisfellipet18.vercel.app
 
 
-## Deploy
-
-Para fazer o deploy desse projeto rode
-
-```bash
-  npm run build
-
-  vercel deploy
-```
 ```bash
 ## Configuração do ambiente
 
@@ -62,7 +53,13 @@ A Aplicação necessita que tenha dois terminais abertos, um para o FrontEnd e o
 
 ## Acessando o BackEnd 
 No seu terminal , dentro do diretório do BackEnd - para rodar digite no terminal
-$ git install <Enter>
+
+
+$ npm install <Enter>
+
+## Realizando as migrações - BackEnd
+npx prisma migrate dev
+
 $ npm run start:dev <Enter>
 
 A aplicação estara rodando - Exemplo: 
@@ -73,11 +70,8 @@ A aplicação estara rodando - Exemplo:
 [Nest] 18691  - 07/02/2024, 14:36:41     LOG [RouterExplorer] Mapped {/contacts/:id, DELETE} route +0ms
 [Nest] 18691  - 07/02/2024, 14:36:41     LOG [NestApplication] Nest application successfully started +55ms
 
-## Realizando as migrações - BackEnd
-npx prisma migrate dev
-
 ## Acessando o FrontEnd 
-No seu terminal , dentro do diretório do frontEn, execute os seguintes comandos:
+No seu terminal , dentro do diretório do frontEnd, execute os seguintes comandos:
 Esse comando é utilizado para instalar as dependências do projeto.
 $ npm install <Enter>
 Em seguida, execute o comando `npm run dev` para iniciar o servidor de desenvolvimento do frontend.

@@ -36,6 +36,7 @@ export const RegisterForm = () => {
             <Input 
             label="Seu nome" 
             type="text" 
+            className="label"
             placeholder="Maria Silva" 
             {...register("name")} 
             required
