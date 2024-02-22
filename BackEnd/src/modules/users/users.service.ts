@@ -34,7 +34,14 @@ export class UsersService {
   }
 
   async findOneUsers(id: string) {
-    const user = await this.prisma.user.findUnique({where: {id}})
+    const user = await this.prisma.user.findUnique({where: {id},
+    include: {contacts: true}
+  })
+
+  if (!user) {
+    throw new NotFoundException("User not found");
+  }
+  
     return plainToInstance(User, user)
   }
 
