@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     ({ label, ...rest }: InputProps, ref: Ref<HTMLInputElement>) => {
     return (
         <div className={styles.inputBox}>
-            <label className="label">{label}</label>
+            <label className={styles.labelContact}>{label}</label>
             <input ref={ref} {...rest}/>
         </div>
     )

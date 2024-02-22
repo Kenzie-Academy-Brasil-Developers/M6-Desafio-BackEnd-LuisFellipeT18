@@ -38,7 +38,7 @@ export const CreateContactForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Input
-            label="Nome do contato" 
+            label="Nome do contato"
             type="text" 
             placeholder="Empresa, Pessoa, etc" 
             {...register("name")} 
@@ -58,10 +58,11 @@ export const CreateContactForm = () => {
             placeholder="1199776655" 
             {...register("telephone")} 
             required/>
-    
-            <button type="submit" className="btn outline" >
+            <div className="buttonCreate">
+                <button type="submit" className="btn outline" >
                 Criar  
-            </button>
+                </button>
+            </div>
             
         </form>
     )

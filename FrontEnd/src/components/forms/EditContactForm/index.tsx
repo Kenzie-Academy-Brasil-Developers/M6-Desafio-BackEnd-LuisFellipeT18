@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Input } from "../Input"
 import { SubmitHandler, useForm, } from "react-hook-form"
 import { ContactContext } from "../../providers/ContactContext";
+import styles from "../../forms/EditContactForm/style.module.scss"
 
 interface FormData {
     name: string;
@@ -26,7 +27,7 @@ export const EditContactForm = () => {
         editContact(formData)
     }
     return (
-        <form onSubmit={handleSubmit(submit)}>
+        <form className={styles.formBox} onSubmit={handleSubmit(submit)}>
             <Input
             label="Nome do contato" 
             type="text" 
@@ -48,8 +49,9 @@ export const EditContactForm = () => {
             placeholder="1199776655" 
             {...register("telephone")} 
             required/>
-    
-            <button type="submit" className="btn outline" >Editar Contato</button>
+            <div className="buttonEdit">
+                <button type="submit" className="btn outline" >Editar Contato</button>
+            </div>
 
         </form>
     )
