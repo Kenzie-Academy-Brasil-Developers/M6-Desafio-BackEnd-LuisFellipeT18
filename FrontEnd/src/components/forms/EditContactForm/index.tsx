@@ -49,10 +49,10 @@ export const EditContactForm = () => {
             placeholder="1199776655" 
             {...register("telephone")} 
             required/>
+
             <div className="buttonEdit">
                 <button type="submit" className="btn outline" >Editar Contato</button>
             </div>
-
         </form>
     )
 }
