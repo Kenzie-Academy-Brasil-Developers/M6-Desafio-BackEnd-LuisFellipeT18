@@ -9,12 +9,13 @@ http://localhost:3000/api
 # Para visualizar a app no vercel click:
 https://desafio-beck-end-luisfellipet18.vercel.app
 
-Lembre-se para que o link funcione, va na pasta BackEnd/src/mains=.ts 
+Lembre-se inicialmente na pasta BackEnd/src/mains=.ts 
+nesta parte do codigo:
+app.enableCors({}) esta assim para poder acessar o link do vercel. 
+para que a app funcione localmente va na pasta BackEnd/src/mains=.ts 
 nesta parte do codigo:
 app.enableCors({origin:"http://localhost:5174"})
-altere para 
-app.enableCors({})
-e salve o projeto - somente assim poderá visualizar a pagina 
+e salve o projeto - somente assim poderá visualizar a pagina localmente
 
 ```bash
 ## Configuração do ambiente
